@@ -1,0 +1,156 @@
+{
+	"info": {
+		"_postman_id": "f262efc5-2fcf-4c48-9d99-f04abf8a780c",
+		"name": "Trabalho POOWII",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40425910"
+	},
+	"item": [
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBUEkgQXZhbGlhciBQcm9qZXRvcyIsInN1YiI6ImdhYmVAdGVzdGUiLCJST0xFIjoiVVNFUiIsImV4cCI6MTczNDE0NzkxMH0.x8zQhcW0KqahDpT5UB2m2StJu6ND3kXIpntq4LGdGc8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/usuarios",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJBUEkgQXZhbGlhciBQcm9qZXRvcyIsInN1YiI6ImdhYmVAdGVzdGUiLCJST0xFIjoiVVNFUiIsImV4cCI6MTczNDE0NzkxMH0.x8zQhcW0KqahDpT5UB2m2StJu6ND3kXIpntq4LGdGc8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/usuarios/8",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"usuarios",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/usuarios",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJNYW5jaGluaGEiLCJzdWIiOiJnYWJlQHRlc3RlIiwiUk9MRSI6IlVTRVIiLCJleHAiOjE3MzQxNDkwOTd9.7ICdP888Y7wjN0AyZKtzCyUQjZ_NVHU3sxNkcQ2LMiM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Erick\",\r\n    \"email\": \"erik@erik.co\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/usuarios/5",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"usuarios",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"gabe@teste\",\r\n    \"senha\": \"gremio1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
