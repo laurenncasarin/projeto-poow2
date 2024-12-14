@@ -1,4 +1,4 @@
 package br.ufsm.poli.csi.lauren.records;
 
-public record DadosTokenJWT() {
+public record DadosTokenJWT(String token, Long expiration) {
 }

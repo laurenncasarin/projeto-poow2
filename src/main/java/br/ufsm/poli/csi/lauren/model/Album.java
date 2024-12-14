@@ -1,9 +1,11 @@
 package br.ufsm.poli.csi.lauren.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.List;
 
+@Data
 @Entity
 public class Album {
     @Id
@@ -13,13 +15,12 @@ public class Album {
     private String nome;
     private String genero;
     private String artista;
+    private String musicas;
     private Integer ano;
     private Float notaMedia;
     private String imagem;
 
     @OneToMany(mappedBy = "album")
     private List<Avaliacao> avaliacoes;
-
-    // Getters e Setters
 }
 

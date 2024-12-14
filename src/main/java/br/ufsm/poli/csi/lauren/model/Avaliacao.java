@@ -1,39 +1,23 @@
 package br.ufsm.poli.csi.lauren.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
 @Entity
 public class Avaliacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id_avaliacao;
+
+    private Long id_usuario;
 
     private Float nota;
 
-    public Long getId() {
-        return id;
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Album album;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Float getNota() {
-        return nota;
-    }
-
-    public void setNota(Float nota) {
-        this.nota = nota;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "usuario_id", nullable = false)
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     private Usuario usuario; // Referência ao usuário
 }
