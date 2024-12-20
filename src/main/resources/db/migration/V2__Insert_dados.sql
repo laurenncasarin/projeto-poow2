@@ -9,8 +9,3 @@ INSERT INTO usuario (nome, email, senha, permissao) VALUES ('Charlie Davis', 'ch
 INSERT INTO album (nome, genero, artista, ano, nota_media, imagem) VALUES ('Album 1', 'Rock', 'Artist 1', 2020, 4.5, 'image1.jpg');
 INSERT INTO album (nome, genero, artista, ano, nota_media, imagem) VALUES ('Album 2', 'Pop', 'Artist 2', 2019, 4.0, 'image2.jpg');
 INSERT INTO album (nome, genero, artista, ano, nota_media, imagem) VALUES ('Album 3', 'Jazz', 'Artist 3', 2018, 3.5, 'image3.jpg');
-
--- Inserts for avaliacao table
-INSERT INTO avaliacao (nota, comentario, usuario_id, album_id) VALUES (4.5, 'Great album!', 1, 1);
-INSERT INTO avaliacao (nota, comentario, usuario_id, album_id) VALUES (4.0, 'Good album!', 2, 2);
-INSERT INTO avaliacao (nota, comentario, usuario_id, album_id) VALUES (3.5, 'Average album.', 3, 3);

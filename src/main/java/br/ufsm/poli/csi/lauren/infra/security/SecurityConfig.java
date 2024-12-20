@@ -1,5 +1,6 @@
 package br.ufsm.poli.csi.lauren.infra.security;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -16,6 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
+@Tag(name = "Configuração de Segurança", description = "Configuração de segurança da aplicação")
 public class SecurityConfig {
     private final AutenticacaoFilter autenticacaoFilter;
 
@@ -27,7 +29,9 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
-                .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .cors(AbstractHttpConfigurer::disable)
+                .sessionManagement(sm ->
+                        sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth ->
                         auth.requestMatchers(HttpMethod.POST, "/login").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/usuarios").permitAll()
@@ -36,6 +40,13 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.PUT, "/usuarios/{id}").hasAnyAuthority("ADMIN", "USER")
                                 .requestMatchers(HttpMethod.GET, "/usuarios/**").hasAuthority("ADMIN")
                                 .requestMatchers(HttpMethod.DELETE, "/usuarios/{id}").hasAuthority("ADMIN")
+                                .requestMatchers(HttpMethod.GET, "/albuns").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/albuns/{id}").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/albuns").hasAuthority("ADMIN")
+                                .requestMatchers(HttpMethod.PUT, "/albuns/{id}").hasAuthority("ADMIN")
+                                .requestMatchers(HttpMethod.DELETE, "/albuns/{id}").hasAuthority("ADMIN")
+                                .requestMatchers(HttpMethod.POST, "/albuns/avaliar/{id_album}").hasAnyAuthority("ADMIN", "USER")
+                                .requestMatchers("/swagger-ui/**", "/api-docs/**", "/swagger-ui.html").permitAll()
                                 .anyRequest().authenticated())
                 .addFilterBefore(this.autenticacaoFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

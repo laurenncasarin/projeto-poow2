@@ -1,6 +1,7 @@
 package br.ufsm.poli.csi.lauren.infra.security;
 
 import br.ufsm.poli.csi.lauren.service.AutenticacaoService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
 @Component
+@Tag(name = "Filtro de Autenticação", description = "Filtro para autenticar requisições")
 public class AutenticacaoFilter extends OncePerRequestFilter {
 
     private final TokenServiceJWT tokenServiceJWT;

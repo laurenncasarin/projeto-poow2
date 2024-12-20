@@ -18,7 +18,7 @@ import java.util.List;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(nullable = false, length = 100)
     private String nome;
@@ -31,7 +31,7 @@ public class Usuario {
 
     private String permissao;
 
-    @OneToMany(mappedBy = "usuario")
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<Avaliacao> avaliacoes;
 
     public static Usuario from(UsuarioCriacao usuarioCriacao) {

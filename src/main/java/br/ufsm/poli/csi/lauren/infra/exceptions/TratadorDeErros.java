@@ -1,5 +1,8 @@
 package br.ufsm.poli.csi.lauren.infra.exceptions;
 
+import br.ufsm.poli.csi.lauren.dto.ResponseDTO;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authorization.AuthorizationDeniedException;
 import org.springframework.validation.FieldError;
@@ -13,6 +16,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestControllerAdvice
+@Tag(name = "Tratador de Erros", description = "Trata os erros lançados pela aplicação")
 public class TratadorDeErros {
 
     @ExceptionHandler(NoSuchElementException.class)
@@ -43,6 +47,15 @@ public class TratadorDeErros {
         public DadosErroValidacao(FieldError erro){
             this(erro.getField(), erro.getDefaultMessage());
         }
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseDTO<List<DadosErroValidacao>> tratarErro400(ConstraintViolationException ex){
+        List<DadosErroValidacao> dados = new ArrayList<>();
+        ex.getConstraintViolations().forEach(cv -> {
+            dados.add(new DadosErroValidacao(cv.getPropertyPath().toString(), cv.getMessage()));
+        });
+        return ResponseDTO.badRequest(dados);
     }
 
 }
